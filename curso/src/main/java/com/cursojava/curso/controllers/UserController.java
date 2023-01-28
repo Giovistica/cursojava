@@ -13,17 +13,6 @@ public class UserController {
 
     @Autowired
     private UserDao userDao;
-    @RequestMapping(value = "/users/{id}" , method = RequestMethod.GET)
-    public User  getUser(@PathVariable String id){
-        User user = new User();
-
-        user.setUsername("Giovana");
-        user.setLastname("Cardo");
-        user.setEmail("prueba@gmail.com");
-        user.setPhonenumber("123");
-        user.setPassword("1234");
-        return user;
-    }
 
     @RequestMapping(value = "/users" , method = RequestMethod.POST)
     public void  createUser(@RequestBody User user){
@@ -31,7 +20,8 @@ public class UserController {
         userDao.createUser(user);
     }
 
-    @RequestMapping(value = "/users")
+
+    @RequestMapping(value = "/users",  method = RequestMethod.GET)
     public List<User> getUsers(){
         return userDao.getUsuarios();
     }

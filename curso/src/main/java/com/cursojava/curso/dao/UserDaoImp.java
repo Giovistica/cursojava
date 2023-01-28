@@ -18,8 +18,8 @@ public class UserDaoImp implements UserDao {
 
    @Override
    @Transactional
-    public List<User> getUsuarios() {
-        String query = "FROM user";
+    public List getUsuarios() {
+        String query = "FROM User";
         return entityManager.createQuery(query).getResultList();
     }
 

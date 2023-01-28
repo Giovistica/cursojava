@@ -9,23 +9,25 @@ const request = await fetch('/users',{
 method: 'GET',
 header:{
  'accept': 'application/json',
-  'Content-Type': 'application/json'
+ 'Content-Type': 'application/json'
 }});
 
-const usuarios = await request.json();
-console.log(usuarios);
+const users = await request.json();
+
+
+console.log(users,"users");
 
 let listaHTML = '';
 
-for (let usuario of usuarios){
+for (let user of users){
 
-let botonEliminar = '<a href="#" onclick = "eliminarUsuario(' + usuario.id + ')" class="btn btn-danger btn-circle btn-sm"> <i class="fas fa-trash"></i> </a>';
+let botonEliminar = '<a href="#" onclick = "eliminarUsuario(' + user.id + ')" class="btn btn-danger btn-circle btn-sm"> <i class="fas fa-trash"></i> </a>';
 
-let usuarioHTML = '<tr> <td>'+usuario.id+'</td> <td>'
-+usuario.username+'</td><td>'
-+usuario.lastname+'</td> <td>'
-+usuario.email+'</td> <td>'
-+usuario.phonenumber+'</td><td>'
+let usuarioHTML = '<tr> <td>'+user.id+'</td> <td>'
++user.username+'</td><td>'
++user.lastname+'</td> <td>'
++user.email+'</td> <td>'
++user.phonenumber+'</td><td>'
 +botonEliminar+'</td></tr>'
 
 listaHTML = listaHTML + usuarioHTML;
@@ -42,7 +44,10 @@ async function eliminarUsuario(id) {
 
  const request = await fetch('users/' + id, {
     method: 'DELETE',
-    headers: getHeaders()
+    headers: {
+              'accept': 'application/json',
+              'Content-Type': 'application/json'
+             }
   });
 
   location.reload()
